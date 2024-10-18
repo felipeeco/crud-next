@@ -28,7 +28,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
-#postgreSQL
+# prisma
+/prisma/migrations/
+
+# postgreSQL
 /postgres
 .env
 
