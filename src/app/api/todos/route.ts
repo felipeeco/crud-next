@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import * as yup from "yup";
 
 export async function GET(request: Request) {
-
   const { searchParams } = new URL(request.url);
   const take = searchParams.get("take") ?? "10";
   const skip = searchParams.get("skip") ?? "0";
@@ -17,14 +17,31 @@ export async function GET(request: Request) {
 
   const todos = await prisma.todo.findMany({
     take: +take,
-    skip: +skip
+    skip: +skip,
+    orderBy: {
+      createdAt: 'desc'
+    }
   });
 
   return NextResponse.json(todos);
 }
 
+const postSchema = yup.object({
+  description: yup.string().required(),
+  completed: yup.boolean().optional().default(false)
+});
+
 export async function POST(request: Request) {
-  const body = await request.json();
-  await prisma.todo.create({ data: body });
-  return NextResponse.json({ message: "todo created successfully" }, { status: 201 });
+  try {
+    const { description, completed } = await postSchema.validate(await request.json());
+    await prisma.todo.create({ 
+      data: {
+        description,
+        completed
+      } 
+    });
+    return NextResponse.json({ message: "todo created successfully" }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Bad Request' }, { status: 400 });
+  }
 }
