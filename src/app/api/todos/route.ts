@@ -41,6 +41,7 @@ export async function POST(request: Request) {
       } 
     });
     return NextResponse.json({ message: "todo created successfully" }, { status: 201 });
+    /* eslint-disable @typescript-eslint/no-unused-vars */
   } catch (error) {
     return NextResponse.json({ error: 'Bad Request' }, { status: 400 });
   }

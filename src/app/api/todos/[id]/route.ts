@@ -33,6 +33,7 @@ export async function PUT(request: Request, { params }: Segments) {
       }
     });
     return NextResponse.json({ message: "todo updated successfully" }, { status: 200 });
+    /* eslint-disable @typescript-eslint/no-unused-vars */
   } catch (error) {
     return NextResponse.json({ error: 'Bad Request' }, { status: 400 });
   }
