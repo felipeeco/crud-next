@@ -1,8 +1,12 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { CiBookmarkCheck, CiLogout } from "react-icons/ci";
+import { usePathname } from "next/navigation";
+import { Menu } from "../interfaces";
 
-const menu = [
+const menu:Menu[] = [
   {
     title: "Dashboard",
     icon: <CiBookmarkCheck size={30} />,
@@ -16,6 +20,9 @@ const menu = [
 ];
 
 export const Sidebar = () => {
+  
+  const pathName = usePathname();
+
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -49,7 +56,10 @@ export const Sidebar = () => {
             return (
               <li key={index}>
                 <Link
-                  className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                  className={`
+                    relative px-4 py-3 flex items-center space-x-4 rounded-xl
+                    ${ pathName === item.href ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'text-black'} `
+                  }
                   href={item.href}
                 >
                   {item.icon}
