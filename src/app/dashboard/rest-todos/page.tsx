@@ -1,7 +1,12 @@
-export default function RestTodosPage() {
+import prisma from '@/lib/prisma';
+
+export default async function RestTodosPage() {
+  
+  const todos = await prisma.todo.findMany({ orderBy: {description: 'asc'}});
+
   return (
     <>
-      <span className="text-5xl">Page RestTodosPage</span>
+      
     </>
   );
 }
