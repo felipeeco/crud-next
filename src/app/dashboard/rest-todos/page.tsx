@@ -1,4 +1,5 @@
 import prisma from '@/lib/prisma';
+import { GridTodos } from '../components';
 
 export default async function RestTodosPage() {
   
@@ -6,7 +7,7 @@ export default async function RestTodosPage() {
 
   return (
     <>
-      
+      <GridTodos todos={todos} />
     </>
-  );
+  )
 }

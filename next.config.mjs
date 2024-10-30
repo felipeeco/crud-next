@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['tailus.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tailus.io',
+      },
+    ],
   },
 };
 

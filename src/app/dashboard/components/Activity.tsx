@@ -1,35 +1,33 @@
 import { Todo } from '@prisma/client';
+import styles from './Activity.module.css';
+import { IoCheckboxOutline, IoSquareOutline } from 'react-icons/io5';
 
 interface Props {
-  todo: Todo
+  todo: Todo,
+  toggleTodo?: (id: string, complete: boolean) => Promise<Todo|void>
 }
 
-export const Activity = ({ todo }: Props) => {
+export const Activity = ({ todo, toggleTodo }: Props) => {
   return (
-    <div className="md:col-span-2 lg:col-span-1">
-      <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
-        <div>
-          <div className="mt-2 flex justify-center gap-4">
-            <h3 className="text-3xl font-bold text-gray-700">{todo.completed}</h3>
-            <div className="flex items-end gap-1 text-green-500">
-              <svg
-                className="w-3"
-                viewBox="0 0 12 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-          </div>
-          <span className="block text-center text-gray-500">
-            {todo.description}
-          </span>
+    <div className={ todo.completed ? styles.todoDone : styles.todoPending }>
+      <div className="flex flex-col sm:flex-row justify-start items-center gap-4">
+        <div
+          onClick={ () => toggleTodo && toggleTodo(todo.id, !todo.completed) }
+          className={`
+            flex p-2 rounded-md cursor-pointer
+            hover:bg-opacity-60
+            ${ todo.completed ? 'bg-blue-100' : 'bg-red-100' }
+          `}>
+          {
+            todo.completed
+              ? <IoCheckboxOutline size={30} />
+              : <IoSquareOutline size={30} />
+          }
+        </div>
+        <div className="text-center sm:text-left">
+          { todo.description }
         </div>
       </div>
     </div>
-  );
+  )
 };
