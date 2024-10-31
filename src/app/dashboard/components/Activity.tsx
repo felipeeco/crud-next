@@ -1,20 +1,19 @@
-'use client';
-
 import { Todo } from '@prisma/client';
 import styles from './Activity.module.css';
 import { IoCheckboxOutline, IoSquareOutline } from 'react-icons/io5';
 
 interface Props {
   todo: Todo,
-  toggleTodo?: (id: string, complete: boolean) => Promise<Todo|void>
+  toggleTodo?: (id: string, complete: boolean) => Promise<Todo|void>,
+  deleteTodo?: (id: string) => Promise<void>
 }
 
-export const Activity = ({ todo, toggleTodo }: Props) => {
+export const Activity = ({ todo, toggleTodo, deleteTodo }: Props) => {
   return (
-    <div className={ `${todo.completed ? styles.todoDone : styles.todoPending} cursor-pointer` } 
+    <div className={ `${todo.completed ? styles.todoDone : styles.todoPending} cursor-pointer relative` } 
       onClick={ () => toggleTodo && toggleTodo(todo.id, !todo.completed) }
     >
-      <div className="flex flex-col sm:flex-row justify-start items-center gap-4 ">
+      <div className="flex flex-col sm:flex-row justify-start items-center mb-10">
         <div
           className={`
             flex p-2 rounded-md
@@ -31,6 +30,15 @@ export const Activity = ({ todo, toggleTodo }: Props) => {
           { todo.description }
         </div>
       </div>
+      <button 
+        className="absolute bottom-2 right-2 mb-2 p-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-700"
+        onClick={(e) => {
+          e.stopPropagation();
+          deleteTodo && deleteTodo(todo.id);
+        }}
+      >
+        Delete
+      </button>
     </div>
   )
 };
