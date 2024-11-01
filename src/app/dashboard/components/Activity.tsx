@@ -4,8 +4,8 @@ import { IoCheckboxOutline, IoSquareOutline } from 'react-icons/io5';
 
 interface Props {
   todo: Todo,
-  toggleTodo?: (id: string, complete: boolean) => Promise<Todo|void>,
-  deleteTodo?: (id: string) => Promise<void>
+  toggleTodo: (id: string, complete: boolean) => Promise<Todo|void>,
+  deleteTodo: (id: string) => Promise<void>
 }
 
 export const Activity = ({ todo, toggleTodo, deleteTodo }: Props) => {
@@ -34,7 +34,7 @@ export const Activity = ({ todo, toggleTodo, deleteTodo }: Props) => {
         className="absolute bottom-2 right-2 mb-2 p-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-700"
         onClick={(e) => {
           e.stopPropagation();
-          deleteTodo && deleteTodo(todo.id);
+          deleteTodo(todo.id);
         }}
       >
         Delete

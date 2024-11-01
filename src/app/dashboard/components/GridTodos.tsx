@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Todo } from "@prisma/client";
 import { Activity } from "../components";
 import { UpdateTodo, CreateTodo, DeleteTodo } from "../serverActions";
@@ -14,25 +13,23 @@ export const GridTodos = ({ todos = [] }: Props) => {
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [message, setMessage] = useState('');
-  const router = useRouter();
 
   const toggleTodo = async (id: string, completed: boolean) => {
     const updatedTodo = await UpdateTodo(id, completed);
     if (updatedTodo) {
-      router.refresh();
+      setMessage('Todo updated successfully');
+    } else {
+      setMessage('There was an error, please try again');
     }
   };
 
   const deleteTodo = async (id: string) => {
     const deleteTodo = await DeleteTodo(id);
-    if (deleteTodo) {
-      if(deleteTodo === 'Todo deleted successfully') {
-        setMessage(deleteTodo);
-        router.refresh();
-      } else {
-        setMessage('There was an error, please try again');
-      } 
-    }
+    if(deleteTodo === 'Todo deleted successfully') {
+      setMessage(deleteTodo);
+    } else {
+      setMessage('There was an error, please try again');
+    } 
   };
 
   const handleSubmit = async(e: React.FormEvent) => {
@@ -42,7 +39,6 @@ export const GridTodos = ({ todos = [] }: Props) => {
       setMessage(answer);
       setDescription("");
       setCompleted(false);
-      router.refresh();
     }else {
       setMessage('There was an error, please try again');
       setDescription("");
