@@ -10,12 +10,17 @@ const menu:Menu[] = [
   {
     title: "Dashboard",
     icon: <CiBookmarkCheck size={30} />,
-    href: "#",
+    href: "/dashboard",
   },
   {
-    title: "Categories",
+    title: "Rest Todos",
     icon: <CiBookmarkCheck size={30} />,
-    href: "#",
+    href: "/dashboard/rest-todos",
+  },
+  {
+    title: "Cookies",
+    icon: <CiBookmarkCheck size={30} />,
+    href: "/dashboard/cookies",
   },
 ];
 
