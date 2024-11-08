@@ -3,3 +3,11 @@ export interface Menu {
   icon: React.ReactNode;
   href: string;
 }
+
+export interface Product {
+  id    : string;
+  name  : string;
+  price : number;
+  rating: number;
+  image : string;
+}
