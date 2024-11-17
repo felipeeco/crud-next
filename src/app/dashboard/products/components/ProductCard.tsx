@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import Image from "next/image"
 import { IoAddCircleOutline, IoTrashOutline } from "react-icons/io5"
 import { ProductInterface } from '../page';
@@ -10,9 +11,12 @@ interface Props {
 }
 
 export const ProductCard = ({product}: Props) => {
-   
+  
+  const router = useRouter();
+
   const onAddToCart = () => {
     addProductToCart(product.id);
+    router.refresh();
   }
 
   return (

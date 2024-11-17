@@ -1,3 +1,5 @@
+ 'use client';
+
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 
 export const getCookieCart = ():{ [id: string]:number } => {
