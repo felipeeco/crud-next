@@ -27,6 +27,11 @@ const menu:Menu[] = [
     icon: <CiBookmarkCheck size={30} />,
     href: "/dashboard/products",
   },
+  {
+    title: "Cart",
+    icon: <CiBookmarkCheck size={30} />,
+    href: "/dashboard/cart",
+  },
 ];
 
 export const Sidebar = () => {
