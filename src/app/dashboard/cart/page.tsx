@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { ItemCard } from './components/ItemCard';
 import type { Product } from '../interfaces';
-import { products } from '../products/page';
+import { products } from '../products/products';
 
 interface ProductInCart {
   product: Product;

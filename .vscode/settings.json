@@ -1,3 +1,5 @@
 {
-  "github.copilot.editor.enableAutoCompletions": false
+  "github.copilot.editor.enableAutoCompletions": false,
+  "debug.console.closeOnEnd": true,
+  "debug.console.collapseIdenticalLines": false
 }

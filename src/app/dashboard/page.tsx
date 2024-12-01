@@ -1,7 +1,20 @@
-export default function DashboardPage() {
+'use server';
+
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@auth';
+
+export default async function DashboardPage() {
+
+  const session = await getServerSession(authOptions);
+
+  if( !session ) redirect('/api/auth/signin');
+
   return (
-    <>
-      <span className="text-5xl">Page DashboardPage</span>
-    </>
+    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+        <span>perro</span>
+      </div>
+    </div>
   );
 }

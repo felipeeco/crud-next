@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image"
 import { IoAddCircleOutline, IoTrashOutline } from "react-icons/io5"
-import { ProductInterface } from '../page';
+import { ProductInterface } from '../products';
 import { addProductToCart, deleteProductCart } from "../actions";
 
 interface Props {

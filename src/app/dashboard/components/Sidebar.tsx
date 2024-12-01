@@ -48,6 +48,7 @@ export const Sidebar = () => {
               src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
               width={233}
               height={66}
+              priority
             />
           </Link>
         </div>
