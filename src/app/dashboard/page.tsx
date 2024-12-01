@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   return (
     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
-        <span>perro</span>
+        <span>{session.user?.name}</span>
       </div>
     </div>
   );
