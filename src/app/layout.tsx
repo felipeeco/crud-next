@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthProvider from '../authProvider';
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -24,12 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-      >
-        {children}
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+        >
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { Menu } from "../interfaces";
-import { CiBookmarkCheck } from "react-icons/ci";
+import { CiBookmarkCheck, CiUser } from "react-icons/ci";
 import Link from "next/link";
 
 const menu: Menu[] = [
@@ -30,6 +30,11 @@ const menu: Menu[] = [
     title: "Cart",
     icon: <CiBookmarkCheck size={30} />,
     href: "/dashboard/cart",
+  },
+  {
+    title: "Profile",
+    icon: <CiUser size={30} />,
+    href: "/dashboard/profile",
   },
 ];
 
