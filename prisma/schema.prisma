@@ -32,6 +32,9 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  roles String[] @default(["user"])
+  isActive Boolean @default(true)       
+
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  
