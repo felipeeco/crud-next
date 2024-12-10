@@ -25,7 +25,7 @@ export const authOptions:NextAuthOptions = {
     },
     async jwt({token, /* user, account, profile */}) {
       const dbUser = await prisma.user.findUnique({ where: { email: token.email ?? 'no-email' } });
-      token.roles = dbUser?.roles ?? ['no-roles'];
+      token.roles = dbUser?.roles ?? ['Client'];
       token.id = dbUser?.id ?? 'no-uuid';
       return token
     },

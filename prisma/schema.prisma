@@ -32,7 +32,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  roles String[] @default(["user"])
+  roles String[] @default(["Client"])
   isActive Boolean @default(true)       
 
   // Optional for WebAuthn support
