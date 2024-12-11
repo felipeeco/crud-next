@@ -4,12 +4,17 @@ import { Todo } from "@prisma/client";
 import { Activity } from "../components";
 import { UpdateTodo, CreateTodo, DeleteTodo } from "../serverActions";
 import React, { useState } from "react";
+import { useSession } from 'next-auth/react';
+import { redirect } from "next/navigation";
 
 interface Props {
   todos?: Todo[];
 }
 
 export const GridTodos = ({ todos = [] }: Props) => {
+  const { data: session } = useSession();
+  if( !session ) redirect('/api/auth/signin');
+  const userId = session?.user?.id ?? '';
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [message, setMessage] = useState('');
@@ -34,7 +39,7 @@ export const GridTodos = ({ todos = [] }: Props) => {
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    const answer = await CreateTodo(description, completed);
+    const answer = await CreateTodo(description, completed, userId);
     if(answer === 'Todo created succesfull') {
       setMessage(answer);
       setDescription("");

@@ -28,16 +28,18 @@ export async function GET(request: Request) {
 
 const postSchema = yup.object({
   description: yup.string().required(),
-  completed: yup.boolean().optional().default(false)
+  completed: yup.boolean().optional().default(false),
+  userId: yup.string().required()
 });
 
 export async function POST(request: Request) {
   try {
-    const { description, completed } = await postSchema.validate(await request.json());
+    const { description, completed, userId } = await postSchema.validate(await request.json());
     await prisma.todo.create({ 
       data: {
         description,
-        completed
+        completed,
+        userId
       } 
     });
     return NextResponse.json({ message: "todo created successfully" }, { status: 201 });
